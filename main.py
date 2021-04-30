@@ -13,10 +13,11 @@ bot = Bot(command_prefix = "math ", case_insensitive = True)
 # Conn
 @bot.event
 async def on_ready():
-
-    print("\nBot is ready")
-    print("--------------------------------")
-    print("Powered by: avslav & Vergo")
+    print('Successfully connected to discord as:')
+    print(bot.user.name)
+    print(bot.user.id)
+    print('------')
+    await bot.change_presence(activity=discord.Game(name='Solving your math problems!'))
 
 # Error Embed - Handlers
 @bot.event
@@ -33,6 +34,40 @@ async def on_command_error(ctx, error):
   
   print(f"Error in {ctx.guild.name}: {error}. Error Reference ID: {errid}")
   await ctx.reply(embed=embed)
+
+# Extension Load:
+@bot.command()
+async def load(ctx, extension):
+    if ctx.guild.id == 836961032961785866:
+        bot.load_extension(f'Cogs.{extension}')
+        await ctx.send(f'Cog "{extension}" successfully loaded.')
+    else:
+        await ctx.send("Sorry, this command is only for developers.")
+
+# Extension Unload:
+@bot.command()
+async def unload(ctx, extension):
+    if ctx.guild.id == 836961032961785866:
+        client.unload_extension(f'Cogs.{extension}')
+        await ctx.send(f'Cog "{extension}" successfully unloaded.')
+    else:
+        await ctx.send("Sorry, this command is only for developers.")
+
+
+# Extension Reload:
+@bot.command()
+async def reload(ctx, extension):
+    if ctx.guild.id == 836961032961785866:
+        try:
+            client.unload_extension(f'Cogs.{extension}')
+            client.load_extension(f'Cogs.{extension}')
+            await ctx.send(f'Cog "{extension}" successfully reloaded.')
+        except Exception as e:
+            await ctx.send(f"Failed to reload cog. See below why. ```{e}```")
+    else:
+        await ctx.send("Sorry, this command is only for developers.")
+
+
 
 # Addition (+)
 @bot.command()
@@ -150,4 +185,5 @@ async def average(ctx, nums: list = [2, 3, 4, 5,6]):
 
 
 
-bot.run(os.getenv("TOKEN")) 
+token = os.getenv("TOKEN")
+bot.run(token) 
