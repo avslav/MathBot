@@ -18,6 +18,12 @@ async def on_ready():
     print('------')
     await bot.change_presence(activity=discord.Game(name='Solving your math problems!'))
 
+
+# Auto Extension Load
+for filename in os.listdir('./Cogs'):
+  if filename.endswith('.py'):
+    bot.load_extension(f'Cogs.{filename[:-3]}')
+ 
 # Error Embed - Handlers
 @bot.event
 async def on_command_error(ctx, error):
@@ -65,85 +71,9 @@ async def reload(ctx, extension):
             await ctx.send(f"Failed to reload cog. See below why. ```{e}```")
     else:
         await ctx.send("Sorry, this command is only for developers.")
-
-
-# Factorial (!)
-@bot.command(aliases=['!'])
-async def factorial(ctx, num: int):
-  if num > 800:
-      return await ctx.reply(":x: ``Cannot factorial numbers above 800, sorry``")
-       
-  
-  else:
-    res = math.factorial(num)
-    await ctx.send(f"Result: {res}")
    
 
-# Decimal - Fraction (0.5 - 1/2)
-@bot.command(aliases=['dtof', 'd2f'])
-async def decimalToFraction(ctx, n: float):
-    res = n.as_integer_ratio()
-    await ctx.send(f"Result: {res}")
 
-
-# Circle Circumference
-@bot.command(aliases=['cc'])
-async def circlecirc(ctx, radius: float):
-  start = time.time()
-
-  pi = math.pi
-  res = 2 * pi
-  ress = res * radius
-
-  end = time.time()
-
-  embed = discord.Embed(
-    title = "Solved!",
-    description = "Solution Steps:",
-    colour = discord.Color.green()
-  )
-
-  embed.add_field(name="Formula:", value="c = 2πr")
-  embed.add_field(name="Step 1:", value=f"2 * π = 6.28", inline = False)
-  embed.add_field(name="Step 2:", value=f"6.28 * {radius} = {ress}", inline=False)
-  embed.add_field(name="Result:", value=f"c = ``{ress}``")
-  
-  embed.set_author(name=ctx.author, icon_url = ctx.author.avatar_url)
-  embed.set_footer(text=f"Calculated in: {end - start} seconds")
-  
-  await ctx.send(embed=embed)
-
-# Triangle Area 
-@bot.command(aliases=['ta', 'aoft', 'triarea'])
-async def trianglearea(ctx, base: float, height: float):
-  start = time.time()
-
-  res = base * height
-  final = res / 2
-
-  end = time.time()
-
-  embed = discord.Embed(
-    title = "Solved!",
-    description = "Solution Steps:",
-    colour = discord.Color.green()
-  )
-
-  embed.add_field(name="Formula:", value="A = bh / 2")
-  embed.add_field(name="Step 1:", value=f"{base} * {height} = {res}", inline = False)
-  embed.add_field(name="Step 2:", value=f"{res} / 2 = {final}", inline=False)
-  embed.add_field(name="Result:", value=f"A = ``{final}``")
-  
-  embed.set_author(name=ctx.author, icon_url = ctx.author.avatar_url)
-  embed.set_footer(text=f"Calculated in: {end - start} seconds")
-  
-  await ctx.send(embed=embed)
-
-# Powers (**, x^y)
-@bot.command(aliases=['^', '**', 'power','exponent'])
-async def powers(ctx, num: float, exp: int): 
-  result = num ** exp
-  await ctx.reply(f"Result: ``{result}``")
 
 
 # Mean Average
