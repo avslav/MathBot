@@ -150,5 +150,5 @@ async def average(ctx, nums: list = [2, 3, 4, 5,6]):
 
 
 
-token = os.getenv("TOKEN")
+token = "ODM2OTU5ODYwNzQ2NDg1Nzkw.YIllnA.FjNV6bLVBIo0VffbbrgGzLNbpB4"
 bot.run(token) 
