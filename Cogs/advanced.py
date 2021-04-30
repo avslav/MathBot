@@ -52,5 +52,9 @@ class Advanced(commands.Cog):
     async def gcd(self, ctx, num1: int, num2: int):
         await ctx.send(np.gcd(num1, num2))
 
+    @bot.command()
+    async def sqrt(self, ctx, num: int):
+        await ctx.send(np.sqrt(num))
+
 def setup(bot):
     bot.add_cog(Advanced(bot))
