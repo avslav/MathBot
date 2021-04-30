@@ -39,5 +39,12 @@ class Basic(commands.Cog):
         res = num1 * num2
         await ctx.send(f"Result: {res}")
 
+    # Round  
+    @bot.command(aliases=['rnd'])
+    async def round(self, ctx, n: float, *, roundTo: int):
+        res = round(n, roundTo)
+        await ctx.send(f"Result: ``{res}``")
+    
+
 def setup(bot):
     bot.add_cog(Basic(bot))
