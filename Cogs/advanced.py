@@ -7,7 +7,7 @@ global bot
 bot = commands.Bot(command_prefix = "math ", case_insensitive = True)
 
 class Advanced(commands.Cog):
-    def __init__(self, bot, sin):
+    def __init__(self, bot):
         self.bot = bot
 
     
