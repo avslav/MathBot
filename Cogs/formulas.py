@@ -37,6 +37,34 @@ class Formulas(commands.Cog):
   
         await ctx.send(embed=embed)
 
+    # Circle Circumference
+    @bot.command(aliases=['ca', 'aofc', 'areaofcircle'])
+    async def circlearea(self, ctx, radius: float):
+        start = time.time()
+
+        pi = math.pi
+        res = radius ** 2 
+        final = res * pi
+
+        end = time.time()
+
+        embed = discord.Embed(
+            title = "Solved!",
+            description = "Solution Steps:",
+            colour = discord.Color.green()
+        )
+
+        embed.add_field(name="Formula:", value="A = πr ** 2")
+        embed.add_field(name="Step 1:", value=f"{radius} ** 2 = {res}", inline = False)
+        embed.add_field(name="Step 2:", value=f"{res} * π = {final}", inline=False)
+        embed.add_field(name="Result:", value=f"A = ``{round(final, 2)}``")
+  
+        embed.set_author(name=ctx.author, icon_url = ctx.author.avatar_url)
+        embed.set_footer(text=f"Calculated in: {end - start} seconds")
+  
+        await ctx.send(embed=embed)
+
+
     # Triangle Area 
     @bot.command(aliases=['ta', 'aoft', 'triarea'])
     async def trianglearea(self, ctx, base: float, height: float):
