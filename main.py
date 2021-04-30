@@ -47,7 +47,7 @@ async def load(ctx, extension):
 @bot.command()
 async def unload(ctx, extension):
     if ctx.guild.id == 836961032961785866:
-        client.unload_extension(f'Cogs.{extension}')
+        bot.unload_extension(f'Cogs.{extension}')
         await ctx.send(f'Cog "{extension}" successfully unloaded.')
     else:
         await ctx.send("Sorry, this command is only for developers.")
@@ -58,8 +58,8 @@ async def unload(ctx, extension):
 async def reload(ctx, extension):
     if ctx.guild.id == 836961032961785866:
         try:
-            client.unload_extension(f'Cogs.{extension}')
-            client.load_extension(f'Cogs.{extension}')
+            bot.unload_extension(f'Cogs.{extension}')
+            bot.load_extension(f'Cogs.{extension}')
             await ctx.send(f'Cog "{extension}" successfully reloaded.')
         except Exception as e:
             await ctx.send(f"Failed to reload cog. See below why. ```{e}```")
