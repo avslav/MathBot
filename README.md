@@ -2,7 +2,7 @@
 Discord bot for calculating basic operations and formulas. (Early Development)
 
 # Commits
-Feel free to contribute to this bot, and add any relevant math commands. Before commiting, check if the command already exists. The bot token cannot be found in this repo, as Discord auto-detects a token posted on github and resets it. I will be updating main bot files regularly.
+Feel free to contribute to this bot by forking and pull requesting, and add any relevant math commands. Before commiting, check if the command already exists. The bot token cannot be found in this repo, as Discord auto-detects a token posted on github and resets it. I will be updating main bot files regularly.
 
 # Testing 
 To test the bot, join the MathBot server: https://discord.gg/Ck5QfRyrgb
