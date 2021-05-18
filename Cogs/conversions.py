@@ -16,6 +16,15 @@ class Conversions(commands.Cog):
     async def decimalToFraction(self, ctx, n: float):
         res = Fraction(n)
         await ctx.send(f"Result: ``{res}``")
+    
+    # Fraction - Decimal (1/2 - 0.5)
+    @bot.command(aliases=['ftod', 'f2d'])
+    async def fractoDec(self, ctx, numerator: int, denominator: int):
+        res = numerator / denominator
+
+        await ctx.send(f"Result: ``{res}``")
+        
+
 
 
 def setup(bot):
