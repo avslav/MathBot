@@ -38,6 +38,10 @@ async def on_command_error(ctx, error):
   embed.add_field(name="Error ID:", value=errid, inline=False)
   embed.set_footer(text=f"Error Logged at: {ctx.message.created_at}")
   
+  with open("error.log", "a") as f:
+      f.write(f"Error in {ctx.guild.name}: {error}. Error Reference ID: {errid}\n")
+      f.close()
+  
   print(f"Error in {ctx.guild.name}: {error}. Error Reference ID: {errid}")
   await ctx.reply(embed=embed)
 
@@ -73,15 +77,6 @@ async def reload(ctx, extension):
     else:
         await ctx.send("Sorry, this command is only for developers.")
    
-
-
-
-
-# Mean Average
-@bot.command()
-async def average(ctx, nums: list = [2, 3, 4, 5,6]):
-  res = sum(nums) / len(nums)
-  await ctx.send(f"Mean Average: ``{res}``")
 
 
 
